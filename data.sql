@@ -104,16 +104,16 @@ INSERT INTO BreedInfo VALUES ("SIB","...","Semilong","All; except chocolate, lil
 
 
 
-INSERT INTO Shows VALUES (1,"Prettys","Italia",100,"");
-INSERT INTO Shows VALUES (2,"Miss cat","Canada",80,"");
-INSERT INTO Shows VALUES (3,"Dreams","The United States",100,"");
-INSERT INTO Shows VALUES (4,"Roses","Finland",30,"");
-INSERT INTO Shows VALUES (5,"Adorables","The United States",40,"");
-INSERT INTO Shows VALUES (6,"Shiny mind","Spain",30,"");
-INSERT INTO Shows VALUES (7,"Beauty cats","The United States",100,"");
-INSERT INTO Shows VALUES (8,"Dansing dreams","The United States",50,"");
-INSERT INTO Shows VALUES (9,"Cats from the Heaven","Finland",40,"");
-INSERT INTO Shows VALUES (10,"My idols","Spain",20,"");
+INSERT INTO Shows VALUES (1,"Prettys","Italia",100,"A.Beck, S.Stowed, P.Pascal");
+INSERT INTO Shows VALUES (2,"Miss cat","Canada",80,"W.Ray, C.McBride, S.Reese");
+INSERT INTO Shows VALUES (3,"Dreams","The United States",100,"U.McDaddy, P.Wolf, G.Bush");
+INSERT INTO Shows VALUES (4,"Roses","Finland",30,"I.Carpenter, F.Porter, J.Ferguson");
+INSERT INTO Shows VALUES (5,"Adorables","The United States",40,"L.Nelson, T.Rice, V.Hunt");
+INSERT INTO Shows VALUES (6,"Shiny mind","Spain",30,"M.Gardiner, D.Hanson, B.Singh");
+INSERT INTO Shows VALUES (7,"Beauty cats","The United States",100,"H.Carey, O.Roberton, J.Jackson");
+INSERT INTO Shows VALUES (8,"Dansing dreams","The United States",50,"K.Meyer, D.Shelton, D.Drew");
+INSERT INTO Shows VALUES (9,"Cats from the Heaven","Finland",40,"A.Koivu, K.Hiironen, J.Sokerirottanen");
+INSERT INTO Shows VALUES (10,"My idols","Spain",20,"G.Garcia, P.Santos, F.Gomez");
 
 
 
