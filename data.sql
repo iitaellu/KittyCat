@@ -53,9 +53,16 @@ CREATE TABLE Ranking {
     Foreign Key (FK_showID) REFERENCES Shows(showID)
 };
 
-INSERT INTO Owners VALUES (0,"","","","");
-
-
+INSERT INTO Owners VALUES (1,"M. Smith","0400 000 3343","m.smith@email.com","Canada");
+INSERT INTO Owners VALUES (2,"S. Jokunen","0400 323 5553","s.jokunen@email.com","Finland");
+INSERT INTO Owners VALUES (3,"T. Tarantino","0500 030 0032","t.tarantino@email.com","Italia");
+INSERT INTO Owners VALUES (4,"L. Yang","3003 400 3000","l.yang@email.com","Cina");
+INSERT INTO Owners VALUES (5,"G. Fyodorov","9999 039 2233","g.fyodorov@email.com","Russia");
+INSERT INTO Owners VALUES (6,"G. Leitzke","0030 032 4432","g.leitzke@email.com","Germany");
+INSERT INTO Owners VALUES (7,"J. Kunkle","0030 287 8878","j.kunkle@emial.com","Germany");
+INSERT INTO Owners VALUES (8,"N. Chou","3003 998 9992","n.chou@email.com","China");
+INSERT INTO Owners VALUES (9,"W.-J. Chung","9983 993 2334","w-j.chung@email.com","Korea");
+INSERT INTO Owners VALUES (10,"E. Salo","0400 994 030","e.salo@email.com","Finland");
 
 
 INSERT INTO Breed VALUES ("","");
@@ -64,7 +71,6 @@ INSERT INTO Breed VALUES ("","");
 
 
 INSERT INTO Cat VALUES (0,0,"","",0);
-
 
 
 
