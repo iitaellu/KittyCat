@@ -1,5 +1,5 @@
-CREATE TABLE Owner {
-    ownerID int,
+CREATE TABLE Owners {
+    ownerID int NOT NULL,
     ownerName Varchar(80),
     phone Varchar(30),
     email Varchar(80),
@@ -8,15 +8,15 @@ CREATE TABLE Owner {
 };
 
 CREATE TABLE Breed {
-    breedID Varchar(3),
+    breedID Varchar(3) NOT NULL,
     breedName Varchar(30),
     Primary Key (breedID)
 };
 
 CREATE TABLE Cat {
-    catID int,
+    catID int NOT NULL,
     FK_ownerId int,
-    FK_breedID varchar(3),
+    FK_breedID Varchar(3),
     catName Varchar(30),
     age int,
     Primary Key (catID),
@@ -35,7 +35,7 @@ CREATE TABLE BreedInfo {
 };
 
 CREATE TABLE Shows {
-    showID int,
+    showID int NOT NULL,
     place varchar(30),
     participants int,
     judges varchar(80),
@@ -43,7 +43,7 @@ CREATE TABLE Shows {
 };
 
 CREATE TABLE Ranking {
-    rankingID int,
+    rankingID int NOT NULL,
     FK_showID int,
     top1 int,
     top2 int,
@@ -52,3 +52,31 @@ CREATE TABLE Ranking {
     Primary Key (rankingID),
     Foreign Key (FK_showID) REFERENCES Shows(showID)
 };
+
+INSERT INTO Owners VALUES (0,"","","","");
+
+
+
+
+INSERT INTO Breed VALUES ("","");
+
+
+
+
+INSERT INTO Cat VALUES (0,0,"","",0);
+
+
+
+
+
+INSERT INTO BreedInfo VALUES ("","","","","",0);
+
+
+
+
+INSERT INTO Shows VALUES (0,"",0,"");
+
+
+
+
+INSERT INTO Ranking VALUES (0,0,0,0,0,"");
