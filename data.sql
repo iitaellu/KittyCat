@@ -15,7 +15,7 @@ CREATE TABLE Breed {
 
 CREATE TABLE Cat {
     catID int NOT NULL,
-    FK_ownerId int,
+    FK_ownerId int NOT NULL,
     FK_breedID Varchar(3),
     catName Varchar(30),
     age int,
@@ -79,9 +79,16 @@ INSERT INTO Breed VALUES ("SIB","Siberian");
 INSERT INTO Breed VALUES ("THA","Thai");
 
 
-
-
-INSERT INTO Cat VALUES (0,0,"","",0);
+INSERT INTO Cat VALUES (1,10,"RAG","Mittens",6);
+INSERT INTO Cat VALUES (2,1,"BEN","Hockey",3);
+INSERT INTO Cat VALUES (3,7,"MCO","Forest Junior",1);
+INSERT INTO Cat VALUES (4,9,"SIA","Long",5);
+INSERT INTO Cat VALUES (5,5,"SIB","Muddy",0);
+INSERT INTO Cat VALUES (6,10,"RAG","Teddy",3);
+INSERT INTO Cat VALUES (7,2,"NFO","Cute",7);
+INSERT INTO Cat VALUES (8,4,"SPH","Muddy",5);
+INSERT INTO Cat VALUES (9,9,"BEN","Bob",2);
+INSERT INTO Cat VALUES (10,10,"MCO","Rex",10);
 
 
 
