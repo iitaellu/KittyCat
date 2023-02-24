@@ -25,7 +25,7 @@ CREATE TABLE Cat {
 };
 
 CREATE TABLE BreedInfo {
-    FK_breedID varchar(3),
+    FK_breedID varchar(3) NOT NULL,
     descript varchar(500),
     coat_len varchar(30),
     coat_pattern varchar(30),
