@@ -25,7 +25,7 @@ def main():
         print("2: Print top 3 ranking in a show")
         print("3: Print all your cat info")
         print("4: Print your cat info")
-        print("5: Update your cat show info")
+        print("5: Modify your cats info")
         print("6: Search for one breed, it's shows and ranking")
         print("7: Something")
         print("0: Quit")
@@ -84,10 +84,51 @@ def printOneCat():
     return
 
 def updateCatInfo():
-    catName= input("What is the cat's name? ")
-    
+
+    while(userInput != "0"):
+        print("\nMenu options:")
+        print("1: Add new a cat")
+        print("2: Update a cat info")
+        print("3: Delete a cat")
+        print("0: Quit")
+        userInput = input("What do you want to do? ")
+        print(userInput)
+        if userInput == "1":
+            addCat()
+        if userInput == "2":
+            updateCat()
+        if userInput == "3":
+            deleteCat()
+        if userInput == "0":
+            print("Returning...")
 
     return
+
+def addCat():
+    catName= input("What is the cat's name? ")
+    catId =#luo jollain random generaattorilla
+    catBreed= input("What is the cat breed?")
+    ownerId=# saadaan jostain
+    catAge = input("How old is the cat?")
+
+
+    return
+
+def updateCat():
+    catName= input("What is the cat's name? ")
+    catBreed= input("What is the new cat breed? (N=no change)")
+    ownerId= input("What is the cat's new owner id? (N=no change)")
+    catAge = input("How old is the cat? (N=no change)")
+
+
+    return
+
+def deleteCat():
+    catName= input("What is the cat's name? ")
+
+    
+    return
+
 
 def breedShowRanking():
     breedName = input("Give the breed name: ")
