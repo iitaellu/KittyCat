@@ -29,7 +29,7 @@ CREATE TABLE BreedInfo {
     descript varchar(500),
     coat_len varchar(30),
     coat_pattern varchar(30),
-    catType varchar(30),
+    originLocation varchar(80),
     numOfCats int,
     Foreign Key (FK_breedID) REFERENCES Breed(breedID)
 };
@@ -57,7 +57,7 @@ CREATE TABLE Ranking {
 INSERT INTO Owners VALUES (1,"M. Smith","0400 000 3343","m.smith@email.com","Canada");
 INSERT INTO Owners VALUES (2,"S. Jokunen","0400 323 5553","s.jokunen@email.com","Finland");
 INSERT INTO Owners VALUES (3,"T. Tarantino","0500 030 0032","t.tarantino@email.com","Italia");
-INSERT INTO Owners VALUES (4,"L. Yang","3003 400 3000","l.yang@email.com","Cina");
+INSERT INTO Owners VALUES (4,"L. Yang","3003 400 3000","l.yang@email.com","China");
 INSERT INTO Owners VALUES (5,"G. Fyodorov","9999 039 2233","g.fyodorov@email.com","Russia");
 INSERT INTO Owners VALUES (6,"G. Leitzke","0030 032 4432","g.leitzke@email.com","Germany");
 INSERT INTO Owners VALUES (7,"J. Kunkle","0030 287 8878","j.kunkle@emial.com","Germany");
@@ -76,7 +76,6 @@ INSERT INTO Breed VALUES ("RAG","Ragdoll");
 INSERT INTO Breed VALUES ("SPH","Sphynx");
 INSERT INTO Breed VALUES ("SIA","Siamese");
 INSERT INTO Breed VALUES ("SIB","Siberian");
-INSERT INTO Breed VALUES ("THA","Thai");
 
 
 INSERT INTO Cat VALUES (1,10,"RAG","Mittens",6);
@@ -91,13 +90,29 @@ INSERT INTO Cat VALUES (9,9,"BEN","Bob",2);
 INSERT INTO Cat VALUES (10,10,"MCO","Rex",10);
 
 
+INSERT INTO BreedInfo VALUES ("ABY","...","Short","Ticked tabby","Maybe from Ethiopia",0);
+INSERT INTO BreedInfo VALUES ("BEN","...","Short","Spotted, marbled or rosetted","Created in Asia, Developed in USA",0);
+INSERT INTO BreedInfo VALUES ("MAU","...","Short","Spotted tabby","Egypt",0);
+INSERT INTO BreedInfo VALUES ("MCO","...","Semilong/long","All","The United States",0);
+INSERT INTO BreedInfo VALUES ("NFO","...","Long","All but colorpoint","Norwegian",0);
+INSERT INTO BreedInfo VALUES ("PER","...","Long","All but colorpoint"," Developed in USA and Europe, Found from Greater Iran",0);
+INSERT INTO BreedInfo VALUES ("RAG","...","Long","colorpoint, mitted or bicolor","The United States",0);
+INSERT INTO BreedInfo VALUES ("SPH","...","Hairless","All","Canada, Europe",0);
+INSERT INTO BreedInfo VALUES ("SIA","...","Short","colorpoint","Developed in USA and Europe, Found from Thailand",0);
+INSERT INTO BreedInfo VALUES ("SIB","...","Semilong","All; except chocolate, lilac, cinnamon and fawn","Russia, Ukraine",0);
 
 
-INSERT INTO BreedInfo VALUES ("","","","","",0);
 
 
-
-
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
+INSERT INTO Shows VALUES (0,"",0,"");
 INSERT INTO Shows VALUES (0,"",0,"");
 
 
