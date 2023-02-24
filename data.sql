@@ -36,6 +36,7 @@ CREATE TABLE BreedInfo {
 
 CREATE TABLE Shows {
     showID int NOT NULL,
+    showName varchar(30),
     place varchar(30),
     participants int,
     judges varchar(80),
@@ -65,7 +66,17 @@ INSERT INTO Owners VALUES (9,"W.-J. Chung","9983 993 2334","w-j.chung@email.com"
 INSERT INTO Owners VALUES (10,"E. Salo","0400 994 030","e.salo@email.com","Finland");
 
 
-INSERT INTO Breed VALUES ("","");
+INSERT INTO Breed VALUES ("ABY","Abyssinian");
+INSERT INTO Breed VALUES ("BEN","Bengal");
+INSERT INTO Breed VALUES ("MAU","Egyprian Mau");
+INSERT INTO Breed VALUES ("MCO","Maine Coon");
+INSERT INTO Breed VALUES ("NFO","Norwegian Forest Cat");
+INSERT INTO Breed VALUES ("PER","Persian");
+INSERT INTO Breed VALUES ("RAG","Ragdoll");
+INSERT INTO Breed VALUES ("SPH","Sphynx");
+INSERT INTO Breed VALUES ("SIA","Siamese");
+INSERT INTO Breed VALUES ("SIB","Siberian");
+INSERT INTO Breed VALUES ("THA","Thai");
 
 
 
