@@ -132,11 +132,32 @@ def updateCatInfo():
     return
 
 def addCat():
+    def addCat():
     catName= input("What is the cat's name? ")
-    catId =#luo jollain random generaattorilla
+    number_of_cats = cur.execute("SELECT * FROM Cat")
+    catId = number_of_cats
     catBreed= input("What is the cat breed?")
-    ownerId=# saadaan jostain
+    
     catAge = input("How old is the cat?")
+
+    owner = input("What is your name? (in form F. Lastname) ")
+    cur.execute("SELECT ownerID FROM 'Owners WHERE ownerName = (?)", (owner,))
+    oneRow=cur.fetchone()
+    if(oneRow[0] == Null):
+        number_of_owners = cur.execute("Select * From Owners")
+        ownerId=number_of_owners
+        #NEW owner to Owner Table?
+    else:
+        ownerId=(oneRow[0])
+
+    cur.execute("SELECT breedID FROM 'Breed' WHERE breedName = (?)", (catBreed))
+    otherRow=cur.fetchone()
+    breedId = otherRow[0]
+
+    cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?)", (catId, ownerId, breedId, catName, catAge,))
+    print("Cat named (?) added", (catName,))
+
+    return
 
 
     return
