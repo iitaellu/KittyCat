@@ -210,8 +210,17 @@ def updateCat():
 
 def deleteCat():
     catName= input("What is the cat's name? ")
+    ownerName = input ("What is your name? ")
 
-    
+    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName = (?) AND catName = (?)", (ownerName, catName,))
+    oneRow=cur.fetchone()
+
+    catID = oneRow[0]
+    ownerId = oneRow[1]
+
+    cur.execute("DELETE FROM 'Cat' WHERE catID = (?) AND FK_ownerID = (?)", (catID, ownerId,))
+
+    print("Cat deleted")
     return
 
 
