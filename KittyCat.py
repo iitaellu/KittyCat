@@ -52,12 +52,31 @@ def main():
 
 
 def searchBreed():
-    breedName = input("Give the breed name: ")
-    
+    breedName = input("Give the breed name ID (for example: MAU) : ")
+    cur.execute("SELECT * FROM BreedInfo WHERE FK_breedID = (?);", (breedName,))
+    oneRow=cur.fetchone()
+
+    print("Descript:"+str(oneRow[1]))
+    print("Coat lenght:"+str(oneRow[2]))
+    print("Coat pattern:"+str(oneRow[3]))
+    print("Location of origin:"+str(oneRow[4]))
+    print("Registered number: "+(oneRow[5]))
+
     return
 
 def printTopRanking():
-    showName = input("What is the cat show? ")
+    showName = input("What is the cat show name? ")
+
+    cur.execute("SELECT * FROM Shows INNER JOIN Ranking ON FK_showID=showID ???? = (?) AND ;", (showName,))
+    oneRow= cur.fetchone()
+    print(showName," Score:"+str(oneRow[10]))
+    print("The 1.st:"+str(oneRow[14]))
+    cur.execute("SELECT * FROM Shows INNER JOIN Ranking ON FK_showID=showID ???? = (?) AND ;", (showName,))
+    twoRow=cur.fetchone()
+    print("The 2.st:"+str(twoRow[14]))
+    cur.execute("SELECT * FROM Shows INNER JOIN Ranking ON FK_showID=showID ???? = (?) AND ;", (showName,))
+    threeRow=cur.fetchone()
+    print("The 3.st:"+str(threeRow[14]))
 
     return
 
@@ -68,6 +87,7 @@ def printOwnCat():
         print(row)
     
     return
+
 
 def printOneCat():
     catName = input("What is the cat's name? ")
