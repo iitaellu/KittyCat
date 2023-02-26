@@ -1,19 +1,19 @@
-CREATE TABLE Owners {
+CREATE TABLE Owners (
     ownerID int NOT NULL,
     ownerName Varchar(80),
     phone Varchar(30),
     email Varchar(80),
     Country Varchar(80),
     Primary Key (ownerID)
-};
+);
 
-CREATE TABLE Breed {
+CREATE TABLE Breed (
     breedID Varchar(3) NOT NULL,
     breedName Varchar(30),
     Primary Key (breedID)
-};
+);
 
-CREATE TABLE Cat {
+CREATE TABLE Cat (
     catID int NOT NULL,
     FK_ownerId int NOT NULL,
     FK_breedID Varchar(3),
@@ -22,9 +22,9 @@ CREATE TABLE Cat {
     Primary Key (catID),
     Foreign Key (FK_ownerID) REFERENCES Owner (ownerID),
     Foreign Key (FK_breedID) REFERENCES Breed (breedID)
-};
+);
 
-CREATE TABLE BreedInfo {
+CREATE TABLE BreedInfo (
     FK_breedID varchar(3) NOT NULL,
     descript varchar(500),
     coat_len varchar(30),
@@ -32,18 +32,18 @@ CREATE TABLE BreedInfo {
     originLocation varchar(80),
     numOfCats int,
     Foreign Key (FK_breedID) REFERENCES Breed(breedID)
-};
+);
 
-CREATE TABLE Shows {
+CREATE TABLE Shows (
     showID int NOT NULL,
     showName varchar(30),
     place varchar(30),
     participants int,
     judges varchar(80),
     Primary Key (showID)
-};
+);
 
-CREATE TABLE Ranking {
+CREATE TABLE Ranking (
     rankingID int NOT NULL,
     FK_showID int,
     top1 int,
@@ -52,7 +52,7 @@ CREATE TABLE Ranking {
     score varchar(30),
     Primary Key (rankingID),
     Foreign Key (FK_showID) REFERENCES Shows(showID)
-};
+);
 
 INSERT INTO Owners VALUES (1,"M. Smith","0400 000 3343","m.smith@email.com","Canada");
 INSERT INTO Owners VALUES (2,"S. Jokunen","0400 323 5553","s.jokunen@email.com","Finland");
