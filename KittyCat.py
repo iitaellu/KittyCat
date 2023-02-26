@@ -90,15 +90,21 @@ def printOwnCat():
 
 
 def printOneCat():
+    ownerName = input("Give your name (in form F. Lastname) ")
     catName = input("What is the cat's name? ")
     
-    cur.execute("SELECT * FROM Cat WHERE catName = ('"+catName+"');")
+    cur.execute("Cat.catName, Breed.breedName, Cat.age from Cat INNER JOIN 'Breed' ON Cat.FK_breedID = Breed.breedID INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE catName = (?) AND ownerName = (?)", (catName, ownerName,))
+
+    #SELECT Cat.catName, Breed.breedName, Cat.age from Cat
+    #INNER JOIN "Breed" ON Cat.FK_breedID = Breed.breedID
+    #INNER JOIN "Owners" ON Cat.FK_ownerID = Owners.ownerID
+    #WHERE catName = "Bob" AND ownerName = "S. Jokunen"
     oneRow=cur.fetchone()
 
     print(catName+"information")
-    print("ID:"+(oneRow[0]))
-    print("Owner ID:"+(oneRow[1]))
-    print("Breed ID:"+str(oneRow[2]))
+    print("Name:"+(oneRow[0]))
+    print("Owner:"+(oneRow[1]))
+    print("Breed:"+(oneRow[2]))
     print("Age: "+(oneRow[4]))
 
     return
