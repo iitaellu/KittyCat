@@ -67,16 +67,16 @@ def searchBreed():
 def printTopRanking():
     showName = input("What is the cat show name? ")
 
-    cur.execute("SELECT * FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top1=catID WHERE showName=(?);", (showName,))
+    cur.execute("SELECT score, catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top1=catID WHERE showName=(?);", (showName,))
     oneRow= cur.fetchone()
-    print(showName," Score:"+str(oneRow[10]))
-    print("The 1.st:"+str(oneRow[14]))
-    cur.execute("SELECT * FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top2=catID WHERE showName=(?);", (showName,))
+    print(showName," Score:"+str(oneRow[0]))
+    print("The 1.st:"+str(oneRow[1]))
+    cur.execute("SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top2=catID WHERE showName=(?);", (showName,))
     twoRow=cur.fetchone()
-    print("The 2.st:"+str(twoRow[14]))
-    cur.execute("SELECT * FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top3=catID WHERE showName=(?);", (showName,))
+    print("The 2.st:"+str(twoRow[0]))
+    cur.execute("SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top3=catID WHERE showName=(?);", (showName,))
     threeRow=cur.fetchone()
-    print("The 3.st:"+str(threeRow[14]))
+    print("The 3.st:"+str(threeRow[0]))
 
     return
 
