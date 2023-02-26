@@ -36,7 +36,7 @@ def main():
         if userInput == "2":
             printTopRanking()
         if userInput == "3":
-            printOwnCat()
+            printOwnCats()
         if userInput == "4":
             printOneCat()
         if userInput == "5":
@@ -80,10 +80,11 @@ def printTopRanking():
 
     return
 
-def printOwnCat():
+def printOwnCats():
+    owner= input("What is your last name? ")
     print("Printing your cat(s)")
 
-    for row in cur.execute('SELECT * FROM Cat'):
+    for row in cur.execute("SELECT * FROM Cat INNER JOIN Owners ON ownerID=FK_ownerID WHERE ownerName LIKE %(?)%;", (owner,)):
         print(row)
     
     return
