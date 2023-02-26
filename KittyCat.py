@@ -163,11 +163,48 @@ def addCat():
     return
 
 def updateCat():
-    catName= input("What is the cat's name? ")
-    catBreed= input("What is the new cat breed? (N=no change)")
-    ownerId= input("What is the cat's new owner id? (N=no change)")
-    catAge = input("How old is the cat? (N=no change)")
+    owner = input("What is your name? (in form F. Lastname")
+    catName= input("What is the cat's name you want to modify? ")
 
+    catNewName= input("What is the cat's new name (N=no change) ")
+    catNewOwner= input("What is cat's new owner's name? (in form F. Lastname) (N=no change) ")
+    catBreed= input("What is the new breed of cat? (N=no change) ")
+    catAge = input("How old is the cat? (N=no change) ")
+
+    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName = (?) AND catName = (?)", (owner, catName,))
+    oneRow=cur.fetchone()
+
+    catId= oneRow[0]
+    ownerId = oneRow[1]
+
+    i = -1
+    while i == -1:
+    
+        if catNewName != "N":
+            cur.execute("UPDATE 'CAT' set catName = (?) WHERE FK_ownerid = (?) AND catID = (?)", (catNewName, ownerId, catId,) )
+            continue
+        if catBreed != "N":
+            cur.execute("SELECT breedID FROM Breed WHERE breedName LIKE (?)", (catBreed))
+            breedRow = cur.fetchone()
+            breedID = breedRow[0]
+            cur.execute("UPDATE 'CAT' set FK_breedID = (?) WHERE FK_ownerid = (?) AND catID = (?)", (breedID, ownerId, catId,))
+            continue
+        if catAge != "N":
+            cur.execute("UPDATE 'CAT' set Age = (?) WHERE FK_ownerid = (?) AND catID = (?)", (int(catAge), ownerId, catId,))
+            continue
+        if catNewOwner != "N":
+            cur.execute("SELECT ownerID FROM OWNERS WHERE ownerName = (?)", (newOwner,))
+            ownerInfoRow = cur.fetchone()
+            newOwnerId = ownerInfoRow[0]
+            if (newOwnerId != ""):
+                cur.execute("UPDATE 'CAT' set FK_ownerID = (?) WHERE FK_ownerid = (?) AND catID = (?)", (newOwner, ownerId, catId,))
+                continue
+            else: 
+                print("can't find new owner from db, return to menu...")
+                return
+        else:
+            i = 0
+            print("return to menu")
 
     return
 
