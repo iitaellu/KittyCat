@@ -26,7 +26,7 @@ def main():
         print("3: Print all your cat info")
         print("4: Print your cat info")
         print("5: Modify your cats info")
-        print("6: Search for one breed, it's shows and ranking")
+        print("6: Search for one cat, its winned show(s)")
         print("7: Something")
         print("0: Quit")
         userInput = input("What do you want to do? ")
@@ -42,7 +42,7 @@ def main():
         if userInput == "5":
             updateCatInfo()
         if userInput == "6":
-            breedShowRanking()
+            catShowWinner()
         if userInput == "7":
             Something()
         if userInput == "0":
@@ -224,16 +224,16 @@ def deleteCat():
     return
 
 
-def breedShowRanking():
-    breedName = input("Give the breed name: ")
-    showName = input ("Give the cat show name (N=gives all show breed has been)?")
-    
-    if(showName == "N"):
-        cur.execute()
-    else:
-        cur.execute()
+def catShowWinner():
+    print("All participant from different shows:")
 
-    #db.commit()
+    for row in cur.execute("SELECT catName FROM Cat"):
+        print(row)
+    
+    catName = input("Give the cat name: ")
+    
+    for row in cur.execute("SELECT showName FROM Shows INNER JOIN Ranking ON FK_showID = showID INNER JOIN Cat ON catID = top1  WHERE  catName = (?);", (catName,)):
+        print(row)
 
     return
 
