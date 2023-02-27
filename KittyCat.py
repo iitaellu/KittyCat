@@ -143,10 +143,11 @@ def addCat():
     owner = input("What is your name? (in form F. Lastname) ")
     cur.execute("SELECT ownerID FROM 'Owners WHERE ownerName = (?)", (owner,))
     oneRow=cur.fetchone()
-    if(oneRow[0] == Null):
+   if(oneRow[0] == ""):
         number_of_owners = cur.execute("Select * From Owners")
         ownerId=number_of_owners
-        #NEW owner to Owner Table?
+        cur.execute("INSERT INTO 'Owners' VALUES((?),(?),none,none,none)",(ownerId, owner))
+        print("New owner added. Please modify your information and add phone number, email and country")
     else:
         ownerId=(oneRow[0])
 
