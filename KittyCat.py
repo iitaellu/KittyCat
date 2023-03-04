@@ -50,9 +50,8 @@ def main():
     db.close()        
     return
 
-
 def searchBreed():
-    breedName = input("Give the breed name ID (for example: MAU) : ")
+    breedName = input("Give the breed name ID (for example: MAU): ")
     cur.execute("SELECT * FROM BreedInfo WHERE FK_breedID = (?);", (breedName,))
     oneRow=cur.fetchone()
 
@@ -60,7 +59,7 @@ def searchBreed():
     print("Coat lenght:"+str(oneRow[2]))
     print("Coat pattern:"+str(oneRow[3]))
     print("Location of origin:"+str(oneRow[4]))
-    print("Registered number: "+(oneRow[5]))
+    print("Registered number: "+str(oneRow[5]))
 
     return
 
@@ -229,6 +228,7 @@ def catShowWinner():
     
     catName = input("Give the cat name: ")
     
+    print("Winned shows: ")
     for row in cur.execute("SELECT showName FROM Shows INNER JOIN Ranking ON FK_showID = showID INNER JOIN Cat ON catID = top1  WHERE  catName = (?);", (catName,)):
         print(row)
 
