@@ -132,7 +132,6 @@ def updateCatInfo():
     return
 
 def addCat():
-    def addCat():
     catName= input("What is the cat's name? ")
     number_of_cats = cur.execute("SELECT * FROM Cat")
     catId = number_of_cats
@@ -143,7 +142,7 @@ def addCat():
     owner = input("What is your name? (in form F. Lastname) ")
     cur.execute("SELECT ownerID FROM 'Owners WHERE ownerName = (?)", (owner,))
     oneRow=cur.fetchone()
-   if(oneRow[0] == ""):
+    if (oneRow[0] == ""):
         number_of_owners = cur.execute("Select * From Owners")
         ownerId=number_of_owners
         cur.execute("INSERT INTO 'Owners' VALUES((?),(?),none,none,none)",(ownerId, owner))
@@ -157,9 +156,6 @@ def addCat():
 
     cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?)", (catId, ownerId, breedId, catName, catAge,))
     print("Cat named (?) added", (catName,))
-
-    return
-
 
     return
 
