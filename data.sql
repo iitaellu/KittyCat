@@ -20,7 +20,7 @@ CREATE TABLE Cat (
     catName Varchar(30),
     age int,
     Primary Key (catID),
-    Foreign Key (FK_ownerID) REFERENCES Owner (ownerID),
+    Foreign Key (FK_ownerID) REFERENCES Owners (ownerID),
     Foreign Key (FK_breedID) REFERENCES Breed (breedID)
 );
 
