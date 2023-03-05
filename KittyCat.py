@@ -30,7 +30,6 @@ def main():
         print("7: Something")
         print("0: Quit")
         userInput = input("What do you want to do? ")
-        print(userInput)
         if userInput == "1":
             searchBreed()
         if userInput == "2":
