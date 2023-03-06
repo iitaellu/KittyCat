@@ -54,6 +54,7 @@ CREATE TABLE Ranking (
     Foreign Key (FK_showID) REFERENCES Shows(showID)
 );
 
+/*
 INSERT INTO Owners VALUES (1,"M. Smith","0400 000 3343","m.smith@email.com","Canada");
 INSERT INTO Owners VALUES (2,"S. Jokunen","0400 323 5553","s.jokunen@email.com","Finland");
 INSERT INTO Owners VALUES (3,"T. Tarantino","0500 030 0032","t.tarantino@email.com","Italia");
@@ -127,3 +128,4 @@ INSERT INTO Ranking VALUES (7,7,4,6,1,"90-89-88");
 INSERT INTO Ranking VALUES (8,8,2,5,3,"90-88-70");
 INSERT INTO Ranking VALUES (9,9,7,2,10,"99-95-90");
 INSERT INTO Ranking VALUES (10,10,3,4,9,"99-90-89");
+*/
