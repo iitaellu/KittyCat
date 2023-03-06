@@ -5,7 +5,7 @@ db = sqlite3.connect('KittyCatInfo.db') #Own file name
 cur = db.cursor()
 def initializeDB():
     try:
-        f = open("sqlcommands.sql", "r")
+        f = open("data.sql", "r")
         commandstring = ""
         for line in f.readlines():
             commandstring+=line
