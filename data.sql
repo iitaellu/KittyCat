@@ -15,7 +15,7 @@ CREATE TABLE Breed (
 
 CREATE TABLE Cat (
     catID int NOT NULL,
-    FK_ownerId int NOT NULL,
+    FK_ownerID int NOT NULL,
     FK_breedID Varchar(3),
     catName Varchar(30),
     age int,
