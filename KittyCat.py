@@ -51,61 +51,76 @@ def main():
 
 def searchBreed():
     breedName = input("Give the breed name ID (for example: MAU): ")
-    cur.execute("SELECT * FROM BreedInfo WHERE FK_breedID = (?);", (breedName,))
-    oneRow=cur.fetchone()
 
-    print("Descript:"+str(oneRow[1]))
-    print("Coat lenght:"+str(oneRow[2]))
-    print("Coat pattern:"+str(oneRow[3]))
-    print("Location of origin:"+str(oneRow[4]))
-    print("Registered number: "+str(oneRow[5]))
+    try:
+        cur.execute(
+            "SELECT * FROM BreedInfo WHERE FK_breedID = (?);", (breedName,))
+        oneRow = cur.fetchone()
+
+        print("Descript:"+str(oneRow[1]))
+        print("Coat lenght:"+str(oneRow[2]))
+        print("Coat pattern:"+str(oneRow[3]))
+        print("Location of origin:"+str(oneRow[4]))
+        print("Registered number: "+str(oneRow[5]))
+    except:
+        print("Not found try again")
 
     return
+
 
 def printTopRanking():
     showName = input("What is the cat show name? ")
 
-    cur.execute("SELECT score, catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top1=catID WHERE showName=(?);", (showName,))
-    oneRow= cur.fetchone()
-    print(showName," Score:"+str(oneRow[0]))
-    print("The 1.st:"+str(oneRow[1]))
-    cur.execute("SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top2=catID WHERE showName=(?);", (showName,))
-    twoRow=cur.fetchone()
-    print("The 2.st:"+str(twoRow[0]))
-    cur.execute("SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top3=catID WHERE showName=(?);", (showName,))
-    threeRow=cur.fetchone()
-    print("The 3.st:"+str(threeRow[0]))
+    try:
+        cur.execute("SELECT score, catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top1=catID WHERE showName=(?);", (showName,))
+        oneRow = cur.fetchone()
+        print(showName, " Score:"+str(oneRow[0]))
+        print("The 1.st:"+str(oneRow[1]))
+        cur.execute(
+            "SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top2=catID WHERE showName=(?);", (showName,))
+        twoRow = cur.fetchone()
+        print("The 2.st:"+str(twoRow[0]))
+        cur.execute(
+            "SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top3=catID WHERE showName=(?);", (showName,))
+        threeRow = cur.fetchone()
+        print("The 3.st:"+str(threeRow[0]))
+    except:
+        print("Not found try again")
 
     return
 
+
 def printOwnCats():
-    owner= input("What is your last name? ")
-    print("Printing your cat(s)")
-    for row in cur.execute("SELECT catName FROM Cat INNER JOIN Owners ON ownerID=FK_ownerId WHERE ownerName LIKE (?);", ("%"+owner+"%",)):
-        print(row)
-    
+    owner = input("What is your last name? ")
+
+    try:
+        print("Printing your cat(s)")
+        for row in cur.execute("SELECT catName FROM Cat INNER JOIN Owners ON ownerID=FK_ownerID WHERE ownerName LIKE (?);", ("%"+owner+"%",)):
+            print(row)
+    except:
+        print("Not found try again")
+
     return
 
 
 def printOneCat():
     ownerName = input("Give your name: ")
     catName = input("What is the cat's name? ")
-    
-    cur.execute("SELECT Cat.catName, Breed.breedName, Cat.age from Cat \
-        INNER JOIN 'Breed' ON Cat.FK_breedID = Breed.breedID \
-        INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE Cat.catName = (?) AND Owners.ownerName LIKE (?)", (catName, "%"+ownerName+"%",))
 
-    #SELECT Cat.catName, Breed.breedName, Cat.age from Cat
-    #INNER JOIN "Breed" ON Cat.FK_breedID = Breed.breedID
-    #INNER JOIN "Owners" ON Cat.FK_ownerID = Owners.ownerID
-    #WHERE catName = "Bob" AND ownerName = "S. Jokunen"
-    oneRow=cur.fetchone()
-    
-    print(catName+" information")
-    print("Name: "+str(oneRow[0]))
-    print("Owner: "+str(oneRow[1]))
-    #print("Breed: "+str(oneRow[2]))
-    print("Age: "+str(oneRow[2]))
+    try:
+        cur.execute("SELECT Cat.catName, Breed.breedName, Cat.age from Cat INNER JOIN 'Breed' ON Cat.FK_breedID = Breed.breedID \
+                    INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE Cat.catName = (?) AND Owners.ownerName LIKE (?);", (catName, "%"+ownerName+"%",))
+
+        # WHERE catName = "Bob" AND ownerName = "S. Jokunen"
+        oneRow = cur.fetchone()
+
+        print(catName+"'s information")
+        print("Name: "+str(oneRow[0]))
+        print("Breed: "+str(oneRow[1]))
+        print("Age: "+str(oneRow[2]))
+
+    except:
+        print("Not found try again")
 
     return
 
