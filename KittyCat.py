@@ -27,7 +27,7 @@ def main():
         print("4: Print your cat info")
         print("5: Modify your cats info")
         print("6: Search for one cat, its winned show(s)")
-        print("7: Something")
+        print("7: Modify user information")
         print("0: Quit")
         userInput = input("What do you want to do? ")
         if userInput == "1":
@@ -43,7 +43,7 @@ def main():
         if userInput == "6":
             catShowWinner()
         if userInput == "7":
-            Something()
+            updateUserInfo()
         if userInput == "0":
             print("Ending software...")
     db.close()        
