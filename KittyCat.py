@@ -258,10 +258,34 @@ def catShowWinner():
 
     return
 
-def Something():
-    
+def updateUserInfo():
+    userInput = -1
+
+    while(userInput != "0"):
+        print("     \nMenu options:")
+        print("     1: Add new user")
+        print("     2: Update user info")
+        print("     3: Delete user")
+        print("     0: Quit")
+        userInput = input("     What do you want to do? ")
+        if userInput == "1":
+            addUser()
+        if userInput == "2":
+            updateUser()
+        if userInput == "3":
+            deleteUser()
+        if userInput == "0":
+            print("     Returning...")
     #Modify userinfo?
-    
+    return
+
+def addUser():
+    return
+
+def updateUser():
+    return
+
+def deleteUser():
     return
 
 
