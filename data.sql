@@ -45,7 +45,7 @@ CREATE TABLE Shows (
 
 CREATE TABLE Ranking (
     rankingID int NOT NULL,
-    FK_showID int,
+    FK_showID int NOT NULL,
     top1 int,
     top2 int,
     top3 int,
