@@ -243,11 +243,17 @@ def catShowWinner():
 
     for row in cur.execute("SELECT catName FROM Cat"):
         print(row)
-    
+
     catName = input("Give the cat name: ")
-    
+    win = 0
+    print("Winned shows: ")
     for row in cur.execute("SELECT showName FROM Shows INNER JOIN Ranking ON FK_showID = showID INNER JOIN Cat ON catID = top1  WHERE  catName = (?);", (catName,)):
-        print(row)
+        if len(row) >= 1:
+            print(row)
+            win = 1
+
+    if win == 0:
+        print("None")
 
     return
 
