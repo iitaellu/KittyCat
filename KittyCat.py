@@ -81,7 +81,7 @@ def printTopRanking():
 def printOwnCats():
     owner= input("What is your last name? ")
     print("Printing your cat(s)")
-    for row in cur.execute("SELECT catName FROM Cat INNER JOIN Owners ON ownerID=FK_ownerId WHERE ownerName LIKE '(?)';", ("%"+owner+"%",)):
+    for row in cur.execute("SELECT catName FROM Cat INNER JOIN Owners ON ownerID=FK_ownerId WHERE ownerName LIKE (?);", ("%"+owner+"%",)):
         print(row)
     
     return
@@ -93,7 +93,7 @@ def printOneCat():
     
     cur.execute("SELECT Cat.catName, Breed.breedName, Cat.age from Cat \
         INNER JOIN 'Breed' ON Cat.FK_breedID = Breed.breedID \
-        INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE Cat.catName = (?) AND Owners.ownerName LIKE '(?)'", (catName, "%"+ownerName+"%",))
+        INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE Cat.catName = (?) AND Owners.ownerName LIKE (?)", (catName, "%"+ownerName+"%",))
 
     #SELECT Cat.catName, Breed.breedName, Cat.age from Cat
     #INNER JOIN "Breed" ON Cat.FK_breedID = Breed.breedID
@@ -110,6 +110,7 @@ def printOneCat():
     return
 
 def updateCatInfo():
+    userInput = -1
 
     while(userInput != "0"):
         print("\nMenu options:")
@@ -132,38 +133,40 @@ def updateCatInfo():
 
 def addCat():
     catName= input("What is the cat's name? ")
-    number_of_cats = cur.execute("SELECT * FROM Cat")
-    catId = number_of_cats
-    catBreed= input("What is the cat breed?")
+    cur.execute("SELECT count(*) FROM Cat")
+    catId = list(cur)[0][0]+1
+    catBreed= input("What is the cat breed? ")
     
-    catAge = input("How old is the cat?")
+    catAge = input("How old is the cat? ")
 
     owner = input("What is your name? (in form F. Lastname) ")
-    cur.execute("SELECT ownerID FROM 'Owners WHERE ownerName = (?)", (owner,))
+    cur.execute("SELECT ownerID FROM 'Owners' WHERE ownerName = (?)", (owner,))
     oneRow=cur.fetchone()
-    if (oneRow[0] == ""):
-        number_of_owners = cur.execute("Select * From Owners")
-        ownerId=number_of_owners
-        cur.execute("INSERT INTO 'Owners' VALUES((?),(?),none,none,none)",(ownerId, owner))
+    if (oneRow == None):
+        cur.execute("Select count(*) From Owners")
+        number_of_owners=list(cur)[0][0]
+        ownerId=number_of_owners + 1
+        cur.execute("INSERT INTO 'Owners' VALUES((?),(?),(?),(?),(?))", (ownerId, owner, "-", "-", "-",))
         print("New owner added. Please modify your information and add phone number, email and country")
-    else:
+    if (oneRow != None):
         ownerId=(oneRow[0])
 
-    cur.execute("SELECT breedID FROM 'Breed' WHERE breedName = (?)", (catBreed))
+
+    cur.execute("SELECT breedID FROM 'Breed' WHERE breedName = (?)", (catBreed,))
     otherRow=cur.fetchone()
     breedId = otherRow[0]
 
-    cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?)", (catId, ownerId, breedId, catName, catAge,))
-    print("Cat named (?) added", (catName,))
+    cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?))", (catId, ownerId, breedId, catName, catAge,))
+    print("Cat named "+ catName + " added")
 
     return
 
 def updateCat():
-    owner = input("What is your name? (in form F. Lastname")
+    owner = input("What is your name? (in form F. Lastname) ")
     catName= input("What is the cat's name you want to modify? ")
 
     catNewName= input("What is the cat's new name (N=no change) ")
-    catNewOwner= input("What is cat's new owner's name? (in form F. Lastname) (N=no change) ")
+    newOwner= input("What is cat's new owner's name? (in form F. Lastname) (N=no change) ")
     catBreed= input("What is the new breed of cat? (N=no change) ")
     catAge = input("How old is the cat? (N=no change) ")
 
@@ -176,19 +179,19 @@ def updateCat():
     i = -1
     while i == -1:
     
-        if catNewName != "N":
+        if catNewName != "N" or "n":
             cur.execute("UPDATE 'CAT' set catName = (?) WHERE FK_ownerid = (?) AND catID = (?)", (catNewName, ownerId, catId,) )
             continue
-        if catBreed != "N":
+        if catBreed != "N" or "n":
             cur.execute("SELECT breedID FROM Breed WHERE breedName LIKE (?)", (catBreed))
             breedRow = cur.fetchone()
             breedID = breedRow[0]
             cur.execute("UPDATE 'CAT' set FK_breedID = (?) WHERE FK_ownerid = (?) AND catID = (?)", (breedID, ownerId, catId,))
             continue
-        if catAge != "N":
+        if catAge != "N" or "n":
             cur.execute("UPDATE 'CAT' set Age = (?) WHERE FK_ownerid = (?) AND catID = (?)", (int(catAge), ownerId, catId,))
             continue
-        if catNewOwner != "N":
+        if newOwner != "N" or "n":
             cur.execute("SELECT ownerID FROM OWNERS WHERE ownerName = (?)", (newOwner,))
             ownerInfoRow = cur.fetchone()
             newOwnerId = ownerInfoRow[0]
@@ -228,7 +231,6 @@ def catShowWinner():
     
     catName = input("Give the cat name: ")
     
-    print("Winned shows: ")
     for row in cur.execute("SELECT showName FROM Shows INNER JOIN Ranking ON FK_showID = showID INNER JOIN Cat ON catID = top1  WHERE  catName = (?);", (catName,)):
         print(row)
 
