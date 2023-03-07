@@ -162,6 +162,7 @@ def addCat():
         number_of_owners=list(cur)[0][0]
         ownerId=number_of_owners + 1
         cur.execute("INSERT INTO 'Owners' VALUES((?),(?),(?),(?),(?))", (ownerId, owner, "-", "-", "-",))
+        db.commit()
         print("New owner added. Please modify your information and add phone number, email and country")
     if (oneRow != None):
         ownerId=(oneRow[0])
@@ -172,6 +173,7 @@ def addCat():
     breedId = otherRow[0]
 
     cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?))", (catId, ownerId, breedId, catName, catAge,))
+    db.commit()
     print("Cat named "+ catName + " added")
 
     return
@@ -233,6 +235,7 @@ def deleteCat():
     ownerId = oneRow[1]
 
     cur.execute("DELETE FROM 'Cat' WHERE catID = (?) AND FK_ownerID = (?)", (catID, ownerId,))
+    db.commit()
 
     print("Cat deleted")
     return
