@@ -154,8 +154,8 @@ def addCat():
     
     catAge = input("     How old is the cat? ")
 
-    owner = input("     What is your name? (in form F. Lastname) ")
-    cur.execute("SELECT ownerID FROM 'Owners' WHERE ownerName = (?)", (owner,))
+    owner = input("     What is your last name? (in form F. Lastname) ")
+    cur.execute("SELECT ownerID FROM 'Owners' WHERE ownerName LIKE (?)", ("%"+owner+"%",))
     oneRow=cur.fetchone()
     if (oneRow == None):
         cur.execute("Select count(*) From Owners")
@@ -179,10 +179,10 @@ def addCat():
     return
 
 def updateCat():
-    owner = input("     What is your name? (in form F. Lastname) ")
+    owner = input("     What is your last name? ")
     catName= input("     What is the cat's name you want to modify? ")
 
-    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName = (?) AND catName = (?)", (owner, catName,))
+    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName LIKE (?) AND catName = (?)", ("%"+owner+"%", catName,))
     oneRow=cur.fetchone()
 
     catId= oneRow[0]
@@ -224,9 +224,9 @@ def updateCat():
 
 def deleteCat():
     catName= input("     What is the cat's name? ")
-    ownerName = input ("     What is your name? ")
+    ownerName = input ("     What is your last name? ")
 
-    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName = (?) AND catName = (?)", (ownerName, catName,))
+    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName LIKE (?) AND catName = (?)", ("%"+ownerName+"%", catName,))
     oneRow=cur.fetchone()
 
     catID = oneRow[0]
