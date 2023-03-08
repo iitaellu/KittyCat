@@ -170,9 +170,13 @@ def addCat():
         ownerId=(oneRow[0])
 
 
-    cur.execute("SELECT breedID FROM 'Breed' WHERE breedName = (?)", (catBreed,))
-    otherRow=cur.fetchone()
-    breedId = otherRow[0]
+    try:
+        cur.execute("SELECT breedID FROM 'Breed' WHERE breedName = (?)", (catBreed,))
+        otherRow=cur.fetchone()
+        breedId = otherRow[0]
+    except:
+        print("\n     Somthing went wrong. Please give whole breed name")
+        return
 
     cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?))", (catId, ownerId, breedId, catName, catAge,))
     db.commit()
@@ -216,17 +220,21 @@ def updateCat():
         else: 
             print("     Couldn't find new owner from db")
     if ((catAge != 'N') and (catAge != 'n')):
-        cur.execute("UPDATE 'CAT' set Age = (?) WHERE FK_ownerid = (?) AND catID = (?)", (int(catAge), ownerId, catId,))
-        db.commit()
-        print("     Cat's age changed")
+            cur.execute("UPDATE 'CAT' set Age = (?) WHERE FK_ownerid = (?) AND catID = (?)", (int(catAge), ownerId, catId,))
+            db.commit()
+            print("     Cat's age changed")
     
     if ((catBreed != 'N') and (catBreed != 'n')):
-            cur.execute("SELECT breedID FROM Breed WHERE breedName = (?)", (catBreed,))
-            breedRow = cur.fetchone()
-            breedID = breedRow[0]
-            cur.execute("UPDATE 'CAT' set FK_breedID = (?) WHERE FK_ownerid = (?) AND catID = (?)", (breedID, ownerId, catId,))
-            db.commit()
-            print("     Cat's breed changed")
+            try:
+                cur.execute("SELECT breedID FROM Breed WHERE breedName = (?)", (catBreed,))
+                breedRow = cur.fetchone()
+                breedID = breedRow[0]
+                cur.execute("UPDATE 'CAT' set FK_breedID = (?) WHERE FK_ownerid = (?) AND catID = (?)", (breedID, ownerId, catId,))
+                db.commit()
+                print("     Cat's breed changed")
+            except:
+                print("\n     Somthing went wrong. Give whole breed name")
+                return
     return
 
 def deleteCat():
