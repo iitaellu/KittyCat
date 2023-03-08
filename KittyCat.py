@@ -272,31 +272,77 @@ def catShowWinner():
 def updateUserInfo():
     userInput = -1
 
-    while(userInput != "0"):
+    while (userInput != "0"):
         print("     \nMenu options:")
         print("     1: Add new user")
         print("     2: Update user info")
-        print("     3: Delete user")
         print("     0: Quit")
         userInput = input("     What do you want to do? ")
         if userInput == "1":
             addUser()
         if userInput == "2":
             updateUser()
-        if userInput == "3":
-            deleteUser()
         if userInput == "0":
             print("     Returning...")
-    #Modify userinfo?
+    # Modify userinfo?
     return
 
 def addUser():
+    name = input("     Give your name (for example M. Test): ")
+    phone = input("     Give your phone number: ")
+    email = input("     Give your email: ")
+    country = input("     Country: ")
+
+    cur.execute(
+        "SELECT ownerName FROM 'Owners' WHERE ownerName LIKE (?)", ("%"+name+"%",))
+    oneRow = cur.fetchone()
+    if (oneRow == None):
+        cur.execute("SELECT count(*) FROM Owners")
+        userID = list(cur)[0][0]+1
+
+        cur.execute("INSERT INTO Owners VALUES((?),(?),(?),(?),(?))",
+                    (userID, name, phone, email, country,))
+        db.commit()
+        print("     New User added")
+    if (oneRow != None):
+        print("     User already exist")
+
     return
+
 
 def updateUser():
-    return
+    user = input("     Give your name (for example M. Test): ")
 
-def deleteUser():
+    try:
+        cur.execute(
+            "SELECT OwnerName FROM Owners WHERE Ownername = (?);", (user,))
+    except:
+        print("     No user found, please check your spelling")
+        return
+    print("\n     Give the updated information")
+    name = input("     Give your name (for example M. Test) (N=no change): ")
+    phone = input("     Give your phone number (N=no change): ")
+    email = input("     Give your email (N=no change): ")
+    country = input("     Country (N=no change): ")
+
+    if ((name != 'N') and (name != 'n')):
+        cur.execute(
+            "UPDATE Owners set ownerName = (?) WHERE OwnerName = (?);", (name, user))
+        db.commit()
+    if ((phone != 'N') and (phone != 'n')):
+        cur.execute(
+            "UPDATE Owners set phone = (?) WHERE OwnerName = (?);", (phone, user))
+        db.commit()
+    if ((email != 'N') and (email != 'n')):
+        cur.execute(
+            "UPDATE Owners set email = (?) WHERE OwnerName = (?);", (email, user))
+        db.commit()
+    if ((country != 'N') and (country != 'n')):
+        cur.execute(
+            "UPDATE Owners set Country = (?) WHERE OwnerName = (?);", (country, user))
+        db.commit()
+
+    print("     Information updated")
     return
 
 
