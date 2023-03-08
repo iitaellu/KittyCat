@@ -69,12 +69,14 @@ def searchBreed():
 
 
 def printTopRanking():
-    showName = input("What is the cat show name? ")
-
     try:
+        for row in cur.execute("SELECT showName FROM Shows;"):
+            print(row)
+        showName = input("\nWhat is the wanted cat show name? ")
+
         cur.execute("SELECT score, catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top1=catID WHERE showName=(?);", (showName,))
         oneRow = cur.fetchone()
-        print(showName, " Score:"+str(oneRow[0]))
+        print(showName, "\nScore:"+str(oneRow[0]))
         print("The 1.st:"+str(oneRow[1]))
         cur.execute(
             "SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top2=catID WHERE showName=(?);", (showName,))
