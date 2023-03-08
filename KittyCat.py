@@ -109,7 +109,7 @@ def printOneCat():
 
     try:
         cur.execute("SELECT Cat.catName, Breed.breedName, Cat.age from Cat INNER JOIN 'Breed' ON Cat.FK_breedID = Breed.breedID \
-                    INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE Cat.catName = (?) AND Owners.ownerName LIKE (?);", (catName, "%"+ownerName+"%",))
+                    INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE Cat.catName LIKE (?) AND Owners.ownerName LIKE (?);", ("%"+catName+"%", "%"+ownerName+"%",))
 
         # WHERE catName = "Bob" AND ownerName = "S. Jokunen"
         oneRow = cur.fetchone()
