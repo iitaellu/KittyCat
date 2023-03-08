@@ -130,13 +130,12 @@ def updateCatInfo():
     userInput = -1
 
     while(userInput != "0"):
-        print("\nMenu options:")
-        print("1: Add new a cat")
-        print("2: Update a cat info")
-        print("3: Delete a cat")
-        print("0: Quit")
-        userInput = input("What do you want to do? ")
-        print(userInput)
+        print("\n     Menu options:")
+        print("     1: Add new a cat")
+        print("     2: Update a cat info")
+        print("     3: Delete a cat")
+        print("     0: Quit")
+        userInput = input("     What do you want to do? ")
         if userInput == "1":
             addCat()
         if userInput == "2":
