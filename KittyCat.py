@@ -156,7 +156,7 @@ def addCat():
     
     catAge = input("     How old is the cat? ")
 
-    owner = input("     What is your last name? (in form F. Lastname) ")
+    owner = input("     What is your last name? ")
     cur.execute("SELECT ownerID FROM 'Owners' WHERE ownerName LIKE (?)", ("%"+owner+"%",))
     oneRow=cur.fetchone()
     if (oneRow == None):
@@ -176,7 +176,7 @@ def addCat():
 
     cur.execute("INSERT INTO 'Cat' VALUES ((?),(?),(?),(?),(?))", (catId, ownerId, breedId, catName, catAge,))
     db.commit()
-    print("     Cat named "+ catName + " added")
+    print("\n     Cat named "+ catName + " added")
 
     return
 
@@ -184,14 +184,19 @@ def updateCat():
     owner = input("     What is your last name? ")
     catName= input("     What is the cat's name you want to modify? ")
 
-    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName LIKE (?) AND catName = (?)", ("%"+owner+"%", catName,))
-    oneRow=cur.fetchone()
+    try: 
+        cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName LIKE (?) AND catName = (?)", ("%"+owner+"%", catName,))
+        oneRow=cur.fetchone()
 
-    catId= oneRow[0]
-    ownerId = oneRow[1]
+        catId= oneRow[0]
+        ownerId = oneRow[1]
+
+    except:
+        print("\n     No cat named "+ catName+ " or owner named " + owner)
+        return
 
     catNewName= input("     What is the cat's new name (N=no change) ")
-    newOwner= input("     What is cat's new owner's name? (in form F. Lastname) (N=no change) ")
+    newOwner= input("     What is cat's new owner's name? (N=no change) ")
     catAge = input("     How old is the cat? (N=no change) ")
     catBreed= input("     What is the new breed of cat? (N=no change) ")
 
@@ -201,7 +206,7 @@ def updateCat():
             print("     Cat name changed")
     
     if ((newOwner != 'N') and (newOwner != 'n')):
-        cur.execute("SELECT ownerID FROM OWNERS WHERE ownerName = (?)", (newOwner,))
+        cur.execute("SELECT ownerID FROM OWNERS WHERE ownerName LIKE (?)", ("%"+newOwner+"%",))
         ownerInfoRow = cur.fetchone()
         if (ownerInfoRow != None):
             newOwnerId = ownerInfoRow[0]
@@ -209,7 +214,7 @@ def updateCat():
             db.commit()
             print("     New owner set")
         else: 
-            print("     Can't find new owner from db, return to menu...")
+            print("     Couldn't find new owner from db")
     if ((catAge != 'N') and (catAge != 'n')):
         cur.execute("UPDATE 'CAT' set Age = (?) WHERE FK_ownerid = (?) AND catID = (?)", (int(catAge), ownerId, catId,))
         db.commit()
@@ -228,16 +233,20 @@ def deleteCat():
     catName= input("     What is the cat's name? ")
     ownerName = input ("     What is your last name? ")
 
-    cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName LIKE (?) AND catName = (?)", ("%"+ownerName+"%", catName,))
-    oneRow=cur.fetchone()
+    try: 
+        cur.execute("SELECT Cat.catID, Owners.ownerID FROM CAT INNER JOIN 'Owners' ON Cat.FK_ownerID = Owners.ownerID WHERE ownerName LIKE (?) AND catName = (?)", ("%"+ownerName+"%", catName,))
+        oneRow=cur.fetchone()
 
-    catID = oneRow[0]
-    ownerId = oneRow[1]
+        catID = oneRow[0]
+        ownerId = oneRow[1]
+    except:
+        print("\n     No cat named "+ catName+ " or owner named " + ownerName)
+        return
 
     cur.execute("DELETE FROM 'Cat' WHERE catID = (?) AND FK_ownerID = (?)", (catID, ownerId,))
     db.commit()
 
-    print("     Cat deleted")
+    print("\n     Cat deleted")
     return
 
 
