@@ -91,16 +91,16 @@ INSERT INTO Cat VALUES (9,9,"BEN","Bob",2);
 INSERT INTO Cat VALUES (10,10,"MCO","Rex",10);
 
 
-INSERT INTO BreedInfo VALUES ("ABY","...","Short","Ticked tabby","Maybe from Ethiopia",0);
-INSERT INTO BreedInfo VALUES ("BEN","...","Short","Spotted, marbled or rosetted","Created in Asia, Developed in USA",0);
-INSERT INTO BreedInfo VALUES ("MAU","...","Short","Spotted tabby","Egypt",0);
-INSERT INTO BreedInfo VALUES ("MCO","...","Semilong/long","All","The United States",0);
-INSERT INTO BreedInfo VALUES ("NFO","...","Long","All but colorpoint","Norwegian",0);
-INSERT INTO BreedInfo VALUES ("PER","...","Long","All but colorpoint"," Developed in USA and Europe, Found from Greater Iran",0);
-INSERT INTO BreedInfo VALUES ("RAG","...","Long","colorpoint, mitted or bicolor","The United States",0);
-INSERT INTO BreedInfo VALUES ("SPH","...","Hairless","All","Canada, Europe",0);
-INSERT INTO BreedInfo VALUES ("SIA","...","Short","colorpoint","Developed in USA and Europe, Found from Thailand",0);
-INSERT INTO BreedInfo VALUES ("SIB","...","Semilong","All; except chocolate, lilac, cinnamon and fawn","Russia, Ukraine",0);
+INSERT INTO BreedInfo VALUES ("ABY","With her slender, athletic look and distinctive ticked coat, the Abyssinian is a visually striking, loyal family addition","Short","Ticked tabby","Maybe from Ethiopia",0);
+INSERT INTO BreedInfo VALUES ("BEN","Bengal cats are an intelligent and active breed prized for their boldly patterned coats.","Short","Spotted, marbled or rosetted","Created in Asia, Developed in USA",0);
+INSERT INTO BreedInfo VALUES ("MAU","The elegantly spotted Egyptian mau is a lean, athletic cat with a history dating back at least 3,000 years","Short","Spotted tabby","Egypt",0);
+INSERT INTO BreedInfo VALUES ("MCO","Maine coons are large, intelligent, affectionate pets who love their people","Semilong/long","All","The United States",0);
+INSERT INTO BreedInfo VALUES ("NFO","Norwegian forest cats are large, loving animals who make excellent family pets.","Long","All but colorpoint","Norwegian",0);
+INSERT INTO BreedInfo VALUES ("PER","Sweet tempered and loving, Persian cats are famous for their long, flowing coats and round, pansy-like faces.","Long","All but colorpoint"," Developed in USA and Europe, Found from Greater Iran",0);
+INSERT INTO BreedInfo VALUES ("RAG","Ragdoll cats are gentle, loving companion pets who get along great with children","Long","colorpoint, mitted or bicolor","The United States",0);
+INSERT INTO BreedInfo VALUES ("SPH","Sphynx cats are famous for their (nearly) nude appearance, but there is so much more to these charming, intelligent, and affectionate cats","Hairless","All","Canada, Europe",0);
+INSERT INTO BreedInfo VALUES ("SIA","Siamese cats are social, affectionate, clever animals who make loving and loyal pets. Described as being "dog-like," these kitties mesh well into most families","Short","colorpoint","Developed in USA and Europe, Found from Thailand",0);
+INSERT INTO BreedInfo VALUES ("SIB","Siberian cats are lovable and loyal family companions who get along well with children and other pets.","Semilong","All; except chocolate, lilac, cinnamon and fawn","Russia, Ukraine",0);
 
 
 
