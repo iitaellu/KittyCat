@@ -99,7 +99,7 @@ INSERT INTO BreedInfo VALUES ("NFO","Norwegian forest cats are large, loving ani
 INSERT INTO BreedInfo VALUES ("PER","Sweet tempered and loving, Persian cats are famous for their long, flowing coats and round, pansy-like faces.","Long","All but colorpoint"," Developed in USA and Europe, Found from Greater Iran",0);
 INSERT INTO BreedInfo VALUES ("RAG","Ragdoll cats are gentle, loving companion pets who get along great with children","Long","colorpoint, mitted or bicolor","The United States",0);
 INSERT INTO BreedInfo VALUES ("SPH","Sphynx cats are famous for their (nearly) nude appearance, but there is so much more to these charming, intelligent, and affectionate cats","Hairless","All","Canada, Europe",0);
-INSERT INTO BreedInfo VALUES ("SIA","Siamese cats are social, affectionate, clever animals who make loving and loyal pets. Described as being "dog-like," these kitties mesh well into most families","Short","colorpoint","Developed in USA and Europe, Found from Thailand",0);
+INSERT INTO BreedInfo VALUES ("SIA","Siamese cats are social, affectionate, clever animals who make loving and loyal pets. Described as being 'dog-like', these kitties mesh well into most families","Short","colorpoint","Developed in USA and Europe, Found from Thailand",0);
 INSERT INTO BreedInfo VALUES ("SIB","Siberian cats are lovable and loyal family companions who get along well with children and other pets.","Semilong","All; except chocolate, lilac, cinnamon and fawn","Russia, Ukraine",0);
 
 
