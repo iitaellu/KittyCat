@@ -48,13 +48,16 @@ def main():
             print("Ending software...")
     db.close()        
     return
-
 def searchBreed():
-    breedName = input("Give the breed name ID (for example: MAU): ")
+    breedName = input(
+        "Give the breed name or ID (for example: Egyprian Mau or MAU): ")
 
     try:
-        cur.execute(
-            "SELECT * FROM BreedInfo WHERE FK_breedID = (?);", (breedName,))
+        if len(breedName) > 3:
+            cur.execute("SELECT FK_breedID, descript, coat_len, coat_pattern, originLocation, numOfCats FROM BreedInfo INNER JOIN  Breed ON FK_breedID = breedID WHERE breedName = (?);", (breedName,))
+        else:
+            cur.execute(
+                "SELECT * FROM BreedInfo WHERE FK_breedID = (?);", (breedName,))
         oneRow = cur.fetchone()
 
         print("Descript:"+str(oneRow[1]))
