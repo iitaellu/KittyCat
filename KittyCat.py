@@ -291,7 +291,6 @@ def updateUserInfo():
             updateUser()
         if userInput == "0":
             print("     Returning...")
-    # Modify userinfo?
     return
 
 def addUser():
