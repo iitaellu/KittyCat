@@ -73,7 +73,7 @@ def searchBreed():
 
 def printTopRanking():
     try:
-        for row in cur.execute("SELECT showName FROM Shows;"):
+        for row in cur.execute("SELECT showName FROM Shows ORDER BY showName;"):
             print(row)
         showName = input("\nWhat is the wanted cat show name? ")
 
