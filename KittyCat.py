@@ -80,15 +80,15 @@ def printTopRanking():
         cur.execute("SELECT score, catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top1=catID WHERE showName=(?);", (showName,))
         oneRow = cur.fetchone()
         print(showName, "\nScore:"+str(oneRow[0]))
-        print("The 1.st:"+str(oneRow[1]))
+        print("The 1st:"+str(oneRow[1]))
         cur.execute(
             "SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top2=catID WHERE showName=(?);", (showName,))
         twoRow = cur.fetchone()
-        print("The 2.st:"+str(twoRow[0]))
+        print("The 2nd:"+str(twoRow[0]))
         cur.execute(
             "SELECT catName FROM Shows INNER JOIN Ranking ON FK_showID=showID INNER JOIN Cat ON top3=catID WHERE showName=(?);", (showName,))
         threeRow = cur.fetchone()
-        print("The 3.st:"+str(threeRow[0]))
+        print("The 3rd:"+str(threeRow[0]))
     except:
         print("Not found try again")
 
