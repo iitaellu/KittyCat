@@ -1,7 +1,9 @@
 # KittyCat
 DataBase project
 
-This our (Ida & Viia) CT60A4304 Basics of database systems course project. We created simple database and user interface using sql and python.  
+This our (Ida & Viia) CT60A4304 Basics of database systems course project. We created simple database and user interface using sql and python. 
+
+
 Project documentation:   
 Demo video:  
 
